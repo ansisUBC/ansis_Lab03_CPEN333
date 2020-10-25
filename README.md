@@ -5,8 +5,62 @@ date:   2020-10-11 12:00:00
 authors: [C. Antonio Sánchez, Ali Mousavifar]
 categories: [labs, threads, multithread, shakespeare, testing]
 
----
+--------
 
+Name: 		Ansis Liu
+Student #: 	57838500
+
+Questions:
+- How can you test your program without needing to manually go through all the dialogue in Shakespeare's plays?
+Go through one play and pick out one prominent character. The code could be tested through the use of one section of the text.
+
+- Has writing this code multithreaded helped in any way? Show some numbers in your observations. If your answer is no, under what conditions can multithreading help?
+The observed speed-up factor was "0.7552712643119714". Multithreading did not speed-up the process. The data set needs to be much larger for there to be a need to utilize multithreading.
+
+- As written, if a character in one play has the same name as a character in another -- e.g. King -- it will treat them as the same and artificially increase the word count. How can you modify your code to treat them as separate, but still store all characters in the single dictionary (you do not need to implement this... just think about how you would do it)?
+Each thread ought to concatenate a kind of signature with the character name so as to differentiate similar names from each play.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--------
 
 # Lab 3 -- Testing and Mutexes
 

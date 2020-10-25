@@ -26,7 +26,7 @@ namespace Lab3Q1
                     "lkjsdf  \n\n\n\n\nsl/dk/fj\t\t sld/kfj             sld-kf-j slkdfj"
                 };
 
-                int[] expectRes = new int[] {0, 0, 0, 1, 1, 1, 0, 1, 5};
+                int[] expectRes = new int[] {0, 2, 2, 1, 1, 1, 2, 2, 10};
 
                 //=================================================
                 // Implement your tests here. Check all the edge case scenarios.

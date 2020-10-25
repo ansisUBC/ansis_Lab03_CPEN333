@@ -26,22 +26,61 @@ namespace Lab3Q1
                 "../../data/shakespeare_romeo_and_juliet.txt",
            };
 
+            Stopwatch stopWatch = new Stopwatch();
+            TimeSpan time;
+            double[] t = new double[2];
+
             //=============================================================
             // YOUR IMPLEMENTATION HERE TO COUNT WORDS IN SINGLE THREAD
             //=============================================================
+            stopWatch.Start();
+            foreach (string Name in filenames)                   // Initializing each thread.
+            {
+                HelperFunctions.CountCharacterWords(Name, mutex, wcountsSingleThread);
+            }
+            stopWatch.Stop();
+            time = stopWatch.Elapsed;
+            t[0] = time.TotalMilliseconds;
+            stopWatch.Reset();
+
+            List<Tuple<int, string>> singleThreadSorted = HelperFunctions.SortCharactersByWordcount(wcountsSingleThread);
+
+            HelperFunctions.PrintListofTuples(singleThreadSorted);
 
 
 
-
-            Console.WriteLine("SingleThread is Done!");
+            Console.WriteLine("SingleThread is Done!\n\n\n\n\n");
             //=============================================================
             // YOUR IMPLEMENTATION HERE TO COUNT WORDS IN MULTIPLE THREADS
             //=============================================================
 
 
+            Dictionary<string, int> wcountsMultiThread = new Dictionary<string, int>();
+            List<Thread> threads = new List<Thread>();
+            stopWatch.Start();
+            foreach (string Name in filenames)                   // Initializing each thread.
+            {
+                Thread thread = new Thread(() => HelperFunctions.CountCharacterWords(Name, mutex, wcountsMultiThread) );
+                thread.Start();
+                thread.Join();
+                threads.Add(thread);
+            }
+            stopWatch.Stop();
+            time = stopWatch.Elapsed;
+            t[1] = time.TotalMilliseconds;
+            stopWatch.Reset();
 
 
-            Console.WriteLine("MultiThread is Done!");
+            double factor = t[0] / t[1];
+
+            List<Tuple<int, string>> multiThreadSorted = HelperFunctions.SortCharactersByWordcount(wcountsMultiThread);
+
+            HelperFunctions.PrintListofTuples(multiThreadSorted);
+
+
+            Console.WriteLine("MultiThread is Done!\n\n");
+
+            Console.WriteLine("Speed-Up Factor: {0}\n", factor);
         }
     }
 }

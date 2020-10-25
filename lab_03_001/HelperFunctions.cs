@@ -4,29 +4,14 @@ using System.Threading;
 using System.Linq;
 using Microsoft.VisualBasic;
 using System.Collections.Specialized;
+using System.Collections;
 
 namespace Lab3Q1
 {
     public class HelperFunctions
     {
-        /**
-         * Counts number of words, separated by spaces, in a line.
-         * @param line string in which to count words
-         * @param start_idx starting index to search for words
-         * @return number of words in the line
-         */
-        public static int WordCount(ref string line, int start_idx)
-        {
-            // YOUR IMPLEMENTATION HERE
-            int i = 0;
-            string lowerCaseConversion  =               line.ToLower();
-            char[] charArray            =               lowerCaseConversion.ToArray();
-
-            int charCount = 0;
-            int wordCount = 0;
-            int nonLetter = 0;
-
-            for (i = start_idx; i < line.Length; i++)
+        /*
+        for (i = start_idx; i < line.Length; i++)
             {
                 char testChar = charArray[i];
                 if (   (!Char.IsDigit(charArray[i])) && (!Char.IsLetter(charArray[i])) && (!Char.IsWhiteSpace(charArray[i])) && (!charArray[i].Equals('-') && !charArray[i].Equals('/'))   )  // Not anything conventional
@@ -104,6 +89,48 @@ namespace Lab3Q1
                     }
                 }
             }
+        */
+
+        /**
+         * Counts number of words, separated by spaces, in a line.
+         * @param line string in which to count words
+         * @param start_idx starting index to search for words
+         * @return number of words in the line
+         */
+        public static int WordCount(ref string line, int start_idx)
+        {
+            // YOUR IMPLEMENTATION HERE
+            int i = 0;
+            string lowerCaseConversion  =               line.ToLower();
+            char[] charArray            =               lowerCaseConversion.ToArray();
+
+            int charCount = 0;
+            int wordCount = 0;
+
+            for (i = start_idx; i < line.Length; i++)
+            {
+                
+                if (Char.IsLetterOrDigit(charArray[i])) // The character at the specific index is an alphabetical symbol.
+                {
+                    if (charCount == 0) // Beginning of a word.
+                    {
+                        wordCount++;
+                        charCount++;
+                    }
+                    else
+                    {
+                        charCount++;
+                    }
+                }
+                else                    // Not a letter.
+                {
+                    if (charCount != 0) // Check if the previous character was part of a word.
+                    {
+                        charCount = 0;  // Reset letter count.
+                    }
+                }
+                
+            }
 
 
 
@@ -130,6 +157,7 @@ namespace Lab3Q1
 
             string line;  // for storing each line read from the file
             string character = "";  // empty character to start
+            int startPoint = 0;
             System.IO.StreamReader file = new System.IO.StreamReader(filename);
 
             while ((line = file.ReadLine()) != null)
@@ -145,6 +173,29 @@ namespace Lab3Q1
                 //          if the key exists, update the word counts
                 //          else add a new key-value to the dictionary
                 //    reset the character
+
+                if ( ((startPoint = IsDialogueLine(line, ref character)) > 0)  )
+                {
+                    if (!(String.Equals(character, "")))
+                    {
+                        if (wcounts.ContainsKey(character))
+                        {
+                            mutex.WaitOne();
+                            wcounts[character] = wcounts[character] + WordCount(ref line, startPoint);
+                            mutex.ReleaseMutex();
+                        }
+                        else
+                        {
+                            mutex.WaitOne();
+                            wcounts.Add(character, WordCount(ref line, startPoint));
+                            mutex.ReleaseMutex();
+                        }
+                    }
+
+                } else if (startPoint == 0)
+                {
+                    character = "";
+                }
 
             }
             // Close the file
@@ -229,17 +280,25 @@ namespace Lab3Q1
                 orderedWordCount.Add(pair.Key, pair.Value);
             }
 
-            foreach (KeyValuePair<string, int> pair in orderedWordCount)
-            {
-                if (i < tupleArray.Length)
-                {
-                    tupleArray[i] = new Tuple<int, string>(pair.Value, pair.Key);
-                } 
-                else {
-                    Console.WriteLine("Error: 'i' index is out of bounds.\n");
-                }
 
-                i++;
+            ICollection keyCollection = orderedWordCount.Keys;
+            String[] myKeys = new String[orderedWordCount.Count];
+            keyCollection.CopyTo(myKeys, 0);
+
+            ICollection valueCollection = orderedWordCount.Values;
+            int[] myValues = new int[orderedWordCount.Count];
+            valueCollection.CopyTo(myValues, 0);
+
+            for (int k = 0; k < orderedWordCount.Count; k++)
+            {
+                if (k < tupleArray.Length)
+                {
+                    tupleArray[k] = new Tuple<int, string>(myValues[k], myKeys[k]);
+                }
+                else
+                {
+                    Console.WriteLine("Error: 'k' index is out of bounds.\n");
+                }
             }
 
             var result = tupleArray.OrderByDescending(a => a.Item1);
@@ -263,6 +322,11 @@ namespace Lab3Q1
         {
 
             // Implement printing here
+            int i;
+            for (i = 0; i < sortedList.Count; i++)
+            {
+                Console.WriteLine("Character: {0, -15}\t\tNumber of Words: {1}",sortedList[i].Item2,sortedList[i].Item1);
+            }
 
         }
     }
