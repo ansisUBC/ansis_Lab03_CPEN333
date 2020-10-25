@@ -1,0 +1,13 @@
+C:\Users\ansis\source\repos\CPEN_333\lab_03_001\lab_03_001\bin\Debug\netcoreapp3.1\lab_03_001.exe
+C:\Users\ansis\source\repos\CPEN_333\lab_03_001\lab_03_001\bin\Debug\netcoreapp3.1\lab_03_001.deps.json
+C:\Users\ansis\source\repos\CPEN_333\lab_03_001\lab_03_001\bin\Debug\netcoreapp3.1\lab_03_001.runtimeconfig.json
+C:\Users\ansis\source\repos\CPEN_333\lab_03_001\lab_03_001\bin\Debug\netcoreapp3.1\lab_03_001.runtimeconfig.dev.json
+C:\Users\ansis\source\repos\CPEN_333\lab_03_001\lab_03_001\bin\Debug\netcoreapp3.1\lab_03_001.dll
+C:\Users\ansis\source\repos\CPEN_333\lab_03_001\lab_03_001\bin\Debug\netcoreapp3.1\lab_03_001.pdb
+C:\Users\ansis\source\repos\CPEN_333\lab_03_001\lab_03_001\obj\Debug\netcoreapp3.1\lab_03_001.csprojAssemblyReference.cache
+C:\Users\ansis\source\repos\CPEN_333\lab_03_001\lab_03_001\obj\Debug\netcoreapp3.1\lab_03_001.AssemblyInfoInputs.cache
+C:\Users\ansis\source\repos\CPEN_333\lab_03_001\lab_03_001\obj\Debug\netcoreapp3.1\lab_03_001.AssemblyInfo.cs
+C:\Users\ansis\source\repos\CPEN_333\lab_03_001\lab_03_001\obj\Debug\netcoreapp3.1\lab_03_001.csproj.CoreCompileInputs.cache
+C:\Users\ansis\source\repos\CPEN_333\lab_03_001\lab_03_001\obj\Debug\netcoreapp3.1\lab_03_001.dll
+C:\Users\ansis\source\repos\CPEN_333\lab_03_001\lab_03_001\obj\Debug\netcoreapp3.1\lab_03_001.pdb
+C:\Users\ansis\source\repos\CPEN_333\lab_03_001\lab_03_001\obj\Debug\netcoreapp3.1\lab_03_001.genruntimeconfig.cache
