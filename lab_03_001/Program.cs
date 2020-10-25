@@ -13,7 +13,6 @@ namespace Lab3Q1
             Mutex mutex = new Mutex();
             Dictionary<string, int> wcountsSingleThread = new Dictionary<string, int>();
 
-
             var filenames = new List<string> {
                 "../../data/shakespeare_antony_cleopatra.txt",
                 "../../data/shakespeare_hamlet.txt",
@@ -43,7 +42,6 @@ namespace Lab3Q1
 
 
             Console.WriteLine("MultiThread is Done!");
-            return 0;
         }
     }
 }

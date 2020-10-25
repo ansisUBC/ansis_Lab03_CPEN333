@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <StartupObject>Lab3Q1.Program</StartupObject>
+    <StartupObject>Lab3Q1.WordCountTester</StartupObject>
     <RootNamespace>Lab3Q1</RootNamespace>
   </PropertyGroup>
 
